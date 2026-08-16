@@ -1,36 +1,101 @@
-# MoldAgroTech Website
+<div align="center">
 
-Production-oriented multilingual website for **MoldAgroTech**, a Moldovan AgriTech company focused on agricultural data, IoT, automation, analytics and AI-assisted decision support.
+# 🚜 MoldAgroTech
 
-## Stack
+### Digital infrastructure for modern agriculture in Moldova
 
-- Next.js App Router
-- React + TypeScript strict mode
-- Tailwind CSS
-- Supabase lead storage
-- Vercel-ready deployment
-- Romanian / Russian / English routes
+A multilingual corporate website for a Moldovan AgriTech company focused on **agricultural data, IoT, automation, analytics and AI-assisted decision support**.
 
-## Routes
+![Next.js](https://img.shields.io/badge/Next.js-15.5-000000?logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-19.1-61DAFB?logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-06B6D4?logo=tailwindcss&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-leads-3FCF8E?logo=supabase&logoColor=white)
 
-`/` redirects to `/ro`.
+</div>
 
-Each locale exposes:
+---
 
-- `/[locale]`
-- `/[locale]/solutions`
-- `/[locale]/technology`
-- `/[locale]/industries`
-- `/[locale]/about`
-- `/[locale]/partners`
-- `/[locale]/insights`
-- `/[locale]/contact`
+## Product goal
 
-Legal placeholders are present under `/[locale]/legal/*` and **must be replaced/reviewed before commercial launch**.
+MoldAgroTech presents one coherent digital entry point for farmers, partners and organizations evaluating agricultural technology.
 
-## Run locally
+The site is structured around:
+
+- 🌱 precision-agriculture solutions;
+- 📡 IoT and field-data collection;
+- ⚙️ automation and operational workflows;
+- 📊 analytics and decision support;
+- 🤖 AI-assisted interpretation of agricultural data;
+- 🤝 partnerships and commercial inquiries.
+
+## Languages
+
+The application exposes dedicated locale routes for:
+
+- 🇷🇴 Romanian
+- 🇷🇺 Russian
+- 🇬🇧 English
+
+The root route redirects to `/ro`.
+
+## Main routes
+
+```text
+/[locale]
+/[locale]/solutions
+/[locale]/technology
+/[locale]/industries
+/[locale]/about
+/[locale]/partners
+/[locale]/insights
+/[locale]/contact
+```
+
+Legal placeholder pages exist under:
+
+```text
+/[locale]/legal/*
+```
+
+They must be reviewed and replaced with verified production legal information before a commercial launch.
+
+## Tech stack
+
+| Area | Technology |
+|---|---|
+| Framework | Next.js 15.5 / App Router |
+| UI | React 19.1 |
+| Language | TypeScript 5.7 |
+| Styling | Tailwind CSS 3.4 |
+| Lead storage | Supabase |
+| Icons | Lucide React |
+| Deployment target | Vercel |
+
+## Lead flow
+
+```mermaid
+flowchart LR
+    V[Visitor] --> F[Contact form]
+    F --> API[Server route]
+    API --> VAL[Validation + anti-spam checks]
+    VAL --> SB[(Supabase leads)]
+```
+
+The public form includes:
+
+- server-side validation;
+- a honeypot field;
+- minimum-submit-time protection;
+- server-only use of the Supabase service-role key.
+
+For a high-traffic public launch, add distributed / edge rate limiting and optionally a challenge layer such as Turnstile.
+
+## Local development
 
 ```bash
+git clone https://github.com/xondell/moldagrotech.git
+cd moldagrotech
 npm install
 cp .env.example .env.local
 npm run dev
@@ -44,50 +109,68 @@ npm run lint
 npm run build
 ```
 
-## Supabase lead storage
+## Supabase setup
 
 1. Create a Supabase project.
-2. Run `supabase/migrations/001_leads.sql` in the SQL editor or via Supabase CLI.
-3. Set:
+2. Apply:
 
-```env
-NEXT_PUBLIC_SUPABASE_URL=...
-SUPABASE_SERVICE_ROLE_KEY=...
+```text
+supabase/migrations/001_leads.sql
 ```
 
-The service role key is used only in the server route `src/app/api/leads/route.ts`. Never expose it as a `NEXT_PUBLIC_*` variable.
+3. Configure:
 
-The public form uses server-side validation, a honeypot and minimum-submit-time check. For a high-traffic production deployment, add edge/distributed rate limiting and optionally Turnstile before launch.
+```env
+NEXT_PUBLIC_SUPABASE_URL=
+SUPABASE_SERVICE_ROLE_KEY=
+NEXT_PUBLIC_SITE_URL=
+```
 
-## Content policy inside the project
+> `SUPABASE_SERVICE_ROLE_KEY` is server-only. Never expose it as a `NEXT_PUBLIC_*` variable.
 
-No clients, partners, team members, awards, statistics, testimonials or performance claims are fabricated. The site intentionally omits fake logos and business metrics. Product UI values are explicitly labeled as demo data.
+## Content integrity
 
-Before launch, supply verified:
+This repository intentionally avoids invented business proof.
 
-- company phone/email/address/social links;
-- legal entity information;
-- team profiles;
-- product availability/status;
-- case studies and measured outcomes;
-- real partner logos with permission;
-- real agricultural photography and usage rights.
+The site does **not** fabricate:
 
-## Visual assets
+- customers;
+- partner logos;
+- awards;
+- team members;
+- testimonials;
+- performance statistics;
+- measured agricultural outcomes.
 
-The hero uses an original vector/data composition to avoid shipping unlicensed stock photography. Replace or complement it with verified Moldova/Eastern Europe agricultural photography when approved assets are available.
+Before commercial launch, replace placeholders with verified company contacts, legal details, team information, cases, metrics and approved visual assets.
 
-## Deployment
+## Security / deployment notes
 
-Push the repository to GitHub, import it into Vercel, configure environment variables, and deploy. Set `NEXT_PUBLIC_SITE_URL` to the production canonical domain.
+The initial deployment cycle included a dependency security update for the React Server Components ecosystem. Keep framework dependencies patched and review automated dependency-security PRs before merging.
 
-## Automated GitHub + Supabase setup
+For Vercel:
 
-For Ubuntu/Linux, run:
+1. import the GitHub repository;
+2. configure environment variables;
+3. set `NEXT_PUBLIC_SITE_URL` to the canonical production domain;
+4. test all locale routes and the lead form;
+5. verify that server credentials never appear in the client bundle.
+
+## Repository helpers
+
+Ubuntu/Linux automation is included:
 
 ```bash
 chmod +x setup-public-github.sh
 ./setup-public-github.sh
 ```
 
-The script creates/pushes a **public** GitHub repository and writes the Supabase backend connection only to ignored `.env.local`. See `VERCEL_SETUP.md` for deployment variables.
+See `VERCEL_SETUP.md` for deployment-specific configuration.
+
+---
+
+<div align="center">
+
+**MoldAgroTech — data, automation and better agricultural decisions.**
+
+</div>
