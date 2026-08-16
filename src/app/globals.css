@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --forest: #071a12;
+  --forest-2: #0b2419;
+  --green: #8acb41;
+  --paper: #f5f3ec;
+  --ink: #0f1d17;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Inter, Manrope, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  text-rendering: optimizeLegibility;
+}
+::selection { background: #a6d85f; color: #071a12; }
+a { color: inherit; text-decoration: none; }
+button, input, textarea, select { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 3px solid #8acb41; outline-offset: 3px; }
+
+.container-shell { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
+.section-pad { padding-block: clamp(72px, 9vw, 132px); }
+.eyebrow { letter-spacing: .14em; text-transform: uppercase; font-size: .76rem; font-weight: 700; color: #47735b; }
+.display { font-size: clamp(2.9rem, 7vw, 6.4rem); line-height: .96; letter-spacing: -.055em; font-weight: 650; }
+.h2 { font-size: clamp(2.15rem, 4.2vw, 4.2rem); line-height: 1.02; letter-spacing: -.045em; font-weight: 620; }
+.lead { font-size: clamp(1.05rem, 1.5vw, 1.28rem); line-height: 1.65; color: #4b5d54; }
+.glass-grid {
+  background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+.field-gradient {
+  background:
+    radial-gradient(circle at 70% 15%, rgba(164,216,95,.18), transparent 30%),
+    linear-gradient(180deg, #123425 0%, #0b2419 60%, #071a12 100%);
+}
+.surface { background: rgba(255,255,255,.68); border: 1px solid rgba(7,26,18,.09); box-shadow: 0 24px 80px rgba(7,26,18,.06); }
+.card-lift { transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease; }
+.card-lift:hover { transform: translateY(-4px); border-color: rgba(24,71,47,.25); box-shadow: 0 20px 50px rgba(7,26,18,.08); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
+@media (max-width: 640px) {
+  .container-shell { width: min(100% - 28px, 1180px); }
+  .display { font-size: clamp(2.65rem, 13vw, 4rem); }
+}
