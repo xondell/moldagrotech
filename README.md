@@ -167,6 +167,14 @@ chmod +x setup-public-github.sh
 
 See `VERCEL_SETUP.md` for deployment-specific configuration.
 
+## Editing guide
+
+Localized pages live in [src/app](src/app). The database setup is defined in [supabase/migrations/001_leads.sql](supabase/migrations/001_leads.sql), and the local environment template is [.env.example](.env.example).
+
+Use [package.json](package.json) for the available checks: `npm run typecheck`, `npm run lint` and `npm run build`. Review Romanian, Russian and English pages and submit a test inquiry only to the intended test environment after changing the contact flow.
+
+The deployment guide is [VERCEL_SETUP.md](VERCEL_SETUP.md). Keep the legal and company-content review described above as part of the launch process.
+
 ---
 
 <div align="center">
